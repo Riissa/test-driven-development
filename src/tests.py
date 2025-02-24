@@ -1,8 +1,12 @@
+import sys
+import os
 import unittest
 
-from src.Experiment import Experiment  # Adjust if needed based on folder structure
+# Add 'src' to Python's module search path
+#sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../src')))
+from Experiment import Experiment  # Adjust if needed based on folder structure
 #NEW 
-from src.SignalDetection import SignalDetection  # Adjust the import path if necessary
+from SignalDetection import SignalDetection  # Adjust the import path if necessary
 
 #Tests contructor (__init__) method
 class TestExperiment(unittest.TestCase):
