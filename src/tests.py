@@ -39,6 +39,41 @@ class TestExperiment(unittest.TestCase):
         self.assertEqual(condition['sdt_obj'], sdt)
         self.assertEqual(condition['label'], label)
 
+    def test_sorted_roc_points(self):
+        """Test that sorted_roc_points() correctly returns sorted false alarm rates and hit rates."""
+
+        exp = Experiment()  # Create an Experiment instance
+
+        # Test 1: Ensure it raises ValueError if no conditions exist
+        with self.assertRaises(ValueError):
+            exp.sorted_roc_points()
+
+     # Create multiple SignalDetection objects with varying false alarm and hit rates
+        sdt1 = SignalDetection(40, 10, 20, 30)  # False Alarm Rate: 0.4, Hit Rate: 0.8
+        sdt2 = SignalDetection(20, 20, 10, 40)  # False Alarm Rate: 0.2, Hit Rate: 0.5
+        sdt3 = SignalDetection(10, 30, 5, 55)   # False Alarm Rate: 0.0833, Hit Rate: 0.25
+
+     # Add conditions to the experiment
+        exp.add_condition(sdt1, label="Condition 1")
+        exp.add_condition(sdt2, label="Condition 2")
+        exp.add_condition(sdt3, label="Condition 3")
+
+     # Get sorted ROC points
+        false_alarm_rates, hit_rates = exp.sorted_roc_points()
+
+        # Expected sorted false alarm rates and corresponding hit rates
+        expected_false_alarm_rates = [0.0833, 0.2, 0.4]
+        expected_hit_rates = [0.25, 0.5, 0.8]
+
+      # Ensure lists are sorted and match expected values
+        self.assertEqual(false_alarm_rates, expected_false_alarm_rates)
+        self.assertEqual(hit_rates, expected_hit_rates)
+
+        # Ensure lists are the same length
+        self.assertEqual(len(false_alarm_rates), len(hit_rates))
+
+
+    
 
 if __name__ == "__main__":
     unittest.main()
