@@ -79,11 +79,12 @@ class TestExperiment(unittest.TestCase):
     # ✅ Check if sorted by false alarm rate
         self.assertTrue(all(false_alarm_rate[i] <= false_alarm_rate[i+1] for i in range(len(false_alarm_rate)-1)))
 
+#honestly idk where I'm going with this...but come back and redo the AUC tests
     def test_compute_auc_no_conditions(self):
         """Test that compute_auc() raises ValueError when no conditions exist."""
         with self.assertRaises(ValueError):
             self.exp.compute_auc()
-
+#come back to this below
     def test_compute_auc_dynamic(self):
         """Test AUC computation dynamically with multiple test cases."""
         
