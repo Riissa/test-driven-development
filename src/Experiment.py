@@ -44,4 +44,4 @@ class Experiment:
             auc += width * height  # Trapezoidal rule
 
         return auc
-
+#This code was assisted with the help of AI 

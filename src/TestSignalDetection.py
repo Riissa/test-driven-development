@@ -1,7 +1,7 @@
 import unittest
 import numpy as np
 import matplotlib.pyplot as plt
-#Import code was changed from ..sdt.SignalDetection to signal_detection
+
 from SignalDetection import SignalDetection
 
 class TestSignalDetection(unittest.TestCase):
